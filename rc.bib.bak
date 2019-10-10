@@ -44,6 +44,7 @@
   year    = {2018},
   volume  = {23},
   doi     = {4-017-9521-5},
+  url     = {https://link.springer.com/content/pdf/10.1007/s10664-017-9521-5.pdf},
 }
 
 @InProceedings{Cadariu2015,
@@ -67,6 +68,7 @@
   month     = {May},
   abstract  = {Security vulnerabilities are among the most pressing problems in open source software package libraries. It may take a long time to discover and fix vulnerabilities in packages. In addition, vulnerabilities may propagate to dependent packages, making them vulnerable too. This paper presents an empirical study of nearly 400 security reports over a 6-year period in the npm dependency network containing over 610k JavaScript packages. Taking into account the severity of vulnerabilities, we analyse how and when these vulnerabilities are discovered and fixed, and to which extent they affect other packages in the packaging ecosystem in presence of dependency constraints. We report our findings and provide guidelines for package maintainers and tool developers to improve the process of dealing with security issues.},
   keywords  = {libraries;public domain software;security of data;software packages;security vulnerabilities;npm package dependency network;open source software package libraries;dependent packages;packaging ecosystem;dependency constraints;package maintainers;security issues;security reports;JavaScript packages;Security;Software;Libraries;Data mining;Semantics;Pressing;Ecosystems;software repository mining;software ecosystem;dependency network;security vulnerability;semantic versioning},
+  url       = {https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8595201},
 }
 
 @InProceedings{Perl2015,
