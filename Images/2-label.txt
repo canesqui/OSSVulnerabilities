@@ -1,0 +1,3 @@
+ Survival probability for event “vulnerability is fixed” w.r.t. the date of first affected release.
+
+On the Impact of Security Vulnerabilities in the npm Package Dependency Network

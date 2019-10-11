@@ -8,7 +8,7 @@
 \usepackage{wrapfig}   %for wrapping text around figures and tables
 
 %Included for Gather Purpose in WinEdt only:
-%input "my.bib"
+%input "rc.bib"
 
 \title{\bf Know vulnerabilies oss libraries}
 
@@ -60,8 +60,8 @@ are ineffective in one or more important ways}
 During this paper important studies related to dependencies management will be presented along with the most recent studies about how to identify know vulnerabilities in open source libraries.
 
 %\item
-A 2014 study from Sonatype determined that over 6\% of the download requests from the Maven Central repository were for component versions that included known vulnerabilities. In their review of over 1,500 applications, each of them had an average of 24 severe or critical flaws inherited from their components. \footnote{Report published January 02, 2015 at http://goo.gl/i8J1Zq.}
-
+A 2014 study from Sonatype determined that over 6\% of the download requests from the Maven Central Repository were for component versions that included known vulnerabilities. In their review of over 1,500 applications, each of them had an average of 24 severe or critical flaws inherited from their components. \footnote{Report published January 02, 2015 at http://goo.gl/i8J1Zq.}
+A white paper produced by Contrast security, stated that over 25\% of all libraries download from Maven Central Repository has vulnerability. Only one vulnerable version of the Java GWT package was downloaded 17,666,703 times \cite{williams2012unfortunate,Kula2018,Decan2018,pashchenko2018esem,Derr2017,Alqahtani2017,Nguyen2016,Alqahtani2016,Plate2015,Cox2015,Cadariu2015,Perl2015,Nguyen2013,Williams2012}.
 This is the place to provide a succinct description of the problem context
 giving enough information to support the claim that a problem exists, made in
 the preceding problem declaration.
@@ -118,8 +118,7 @@ In a social and political sense, it is {\em very smart} as well as ethical to
 say good things, which are true, about other people's work. A major motivation
 for this is that editors and program committee members have to get a set of
 reviews for your paper. The easiest way for them to decide who should review it
-is to look at the set of references to {\em related work} (e.g.,
-\cite{Anderson2007,Anderson2009}) to find people who are likely to be competent to
+is to look at the set of references to {\em related work} to find people who are likely to be competent to
 review your paper.  The people whose work you talk about are thus likely to be
 reading what you say about {\em their} work while deciding what to say about
 {\em your} work.
@@ -251,7 +250,7 @@ did this work.
 
 
 \bibliographystyle{IEEETrans}
-\bibliography{./my}
+\bibliography{./rc}
 
 
 \end{document}

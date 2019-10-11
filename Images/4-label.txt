@@ -1,0 +1,4 @@
+Survival probability for event “package is fixed” w.r.t. vulnerability discovery time. Dependent packages are
+shown as straight lines and upstream packages as dotted lines.
+
+On the Impact of Security Vulnerabilities in the npm Package Dependency Network

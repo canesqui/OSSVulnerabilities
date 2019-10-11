@@ -1,0 +1,18 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: ronaldo-canesqui.aux
+The style file: IEEETrans.bst
+I couldn't open database file ./my.bib
+---line 29 of file ronaldo-canesqui.aux
+ : \bibdata{./my
+ :              }
+I'm skipping whatever remains of this command
+I found no database files---while reading file ronaldo-canesqui.aux
+Warning--I didn't find a database entry for "williams2012unfortunate"
+Warning--I didn't find a database entry for "Anderson2007"
+Warning--I didn't find a database entry for "Anderson2009"
+-- IEEEtranS.bst version 1.14 (2015/08/26) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+** Sorting version - not for normal IEEE work.
+
+Done.
+(There were 2 error messages)

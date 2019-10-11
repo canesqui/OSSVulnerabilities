@@ -1,0 +1,3 @@
+Violin plots of packages age at discovery time by vulnerability severity.
+
+On the Impact of Security Vulnerabilities in the npm Package Dependency Network
