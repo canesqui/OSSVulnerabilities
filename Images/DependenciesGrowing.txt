@@ -1,0 +1,2 @@
+Evolution of the number of dependencies (considering for each point in time the latest available
+release of each package)

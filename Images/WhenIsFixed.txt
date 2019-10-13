@@ -1,0 +1,1 @@
+Survival probability for event "vulnerability is fixes" w.r.t. vulnerability discovery time.
