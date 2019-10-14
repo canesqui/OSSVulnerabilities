@@ -227,7 +227,7 @@ Various researchers have worked to solve the problem of know vulnerabilities in 
 Even thought the focus of this work is on papers that detect vulnerabilities using know vulnerabilities database, it is worth mentioning that there is a branch of proposed solutions that operates identifying vulnerabilities based on a set of characteristics. Part of this solutions uses machine learning to identify vulnerabilities. One of this works \cite{Perl2015} mapped the CVE entries to the commit that generated the vulnerability and trained a SVM-based model using the commit's metadata. According to the authors this method reduced the amount of false positives by 99\% when compared to Flawfinder\footnote{https://https://dwheeler.com/flawfinder/}. It was capable of detecting 53 of the 219 known vulnerabilities used in the study and only producing 36 false positives. The proposed solution analyses each commit and tries to predict the presence of vulnerabilities.
 %\end{itemize}
 
-\textbf{Measuring dependency freshness:}
+\textbf{Measuring dependency freshness}
 %\begin{itemize}
 %\item
 The study \cite{Cox2015} proposes a method to measure the dependency freshness. The authors used information from project's pom.xml file to determiner what is the version being used and used the Maven Central Repository to determine the release history for the library. Based on this information, the authors were able to classify each used component in a risk profile with 4 categories: low, moderate, high and very high.
@@ -242,7 +242,7 @@ To determine the relationship between their risk profile and the security vulner
 
 The metrics presented have a great potential in quantifying the dependency freshness. The method has at least one serious limitation: only direct dependencies can be measure, which can generate wrong classifications, specially when direct dependency is updated but a transient dependency exists and is outdated.  
 
-\textbf{Library updatability:}
+\textbf{Library updatability}
 %\begin{itemize}
 %\item
 The study \cite{Cox2015} was able to correlated library freshness with number of vulnerabilities. The finding that old libraries carry more vulnerabilities is also supported by other works \cite{Decan2018,Synopsys2019}. The study \cite{Derr2017} proposes an automated method to evaluate the updatability of dependencies. Their method consist of three steps: determine the API robustness, determine the library usage and determine the library updatability.
@@ -261,7 +261,7 @@ The authors test their approach analyzing 98 libraries and 1,246,118 apps from G
 
 %\end{itemize}
 
-\textbf{Vulnerability Alert Service (VAS):}
+\textbf{Vulnerability Alert Service (VAS)}
 %\begin{itemize}
 %\item
 The Vulnerability Alert Service (VAS) is proposed by \cite{Cadariu2015}. Their focus is to increase the awareness about known vulnerabilities by making it part of the software quality process. The overall process is illustrated by figure ~\ref{VASProcess}. The target project has its dependencies extracted and recognized. The list of dependencies is then analyzed by the matching task, which tries to match the dependency with a entry from the vulnerability disclosures, in this study a CVE entry. Upon a successful match, an alert is produced which is consumed by a human operator. The authors extended the OWASP Dependency Check Tool to extract the dependency list from Maven pom.xml files and used this tool as the vulnerability checker described in the diagram.
@@ -278,6 +278,14 @@ The researchers affirm that the high false-positive can be caused by situations 
 %\end{itemize}
 
 
+\textbf{Code-based vulnerability identification}
+%\begin{itemize}
+%\item
+The study \cite{Ponta2018} uses a method to identify vulnerabilities that, according to the authors, is more accurate then the methods proposed so far. Their work aims to answer the questions: does my application is vulnerable if it uses a vulnerable dependency? The researchers claim that this is not always the case and other studies failed to answer this question. The authors state that the software that contains a certain library that has known vulnerability does not need to be subject to costly efforts if proven that the vulnerability does not present harm. This way, the fix can be applied in the subsequent releases under no additional cost. Conceptually their solution can be used on any ecosystem, but their implementation is based on the Java ecosystem and the Maven Central Repository. They used the project’s pom.xml file to determine the dependencies. After the dependencies are determined, they remove all dependencies classified as provided and test, since those will not be deployed. Then the halted libraries are identified. 
+One key aspect for this approach to work is a database vulnerability that contains the meta-data about library, such as name and version according to Maven Central Repository, the vulnerable source code and the source code for the fix. Using this database is possible to associate the dependency identified previously and the vulnerability, along with the source-code. This database was manually produced by the authors it covers 90\% of Java ecosystem vulnerabilities.
+The authors used static analysis to determine if the vulnerable code is reachable and dynamically analysis. The dynamically analysis is done by instrumenting the vulnerable code and running automated and manual tests.
+Their solution will notify the user if the vulnerability has impact on the application, meaning, the vulnerable code can be reached.
+%\end{itemize}
 
 %\item
 Then, describe the structure of the rest of this section, and what each

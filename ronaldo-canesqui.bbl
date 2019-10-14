@@ -127,6 +127,12 @@ H.~Perl, S.~Dechand, M.~Smith, D.~Arp, F.~Yamaguchi, K.~Rieck, S.~Fahl, and
   Y.~Acar, ``Vccfinder: Finding potential vulnerabilities in open-source
   projects to assist code audits,'' 10 2015, pp. 426--437.
 
+\bibitem{Ponta2018}
+S.~E. {Ponta}, H.~{Plate}, and A.~{Sabetta}, ``Beyond metadata: Code-centric
+  and usage-based analysis of known vulnerabilities in open-source software,''
+  in \emph{2018 IEEE International Conference on Software Maintenance and
+  Evolution (ICSME)}, Sep. 2018, pp. 449--460.
+
 \bibitem{Robbes:2012:DRA:2393596.2393662}
 \BIBentryALTinterwordspacing
 R.~Robbes, M.~Lungu, and D.~R\"{o}thlisberger, ``How do developers react to api
