@@ -10,13 +10,13 @@
 %Included for Gather Purpose in WinEdt only:
 %input "rc.bib"
 
-\title{\bf Know vulnerabilies oss libraries}
+\title{\bf Know vulnerabilies OSS libraries}
 
 \author{Ronaldo Canesqui\\
 Southern Adventist University\\
 ronaldocanesqui@southern.edu
 }
-
+\graphicspath{{Images/}}
 \begin{document}
 
 \maketitle
@@ -45,7 +45,14 @@ step of writing the paper.
 
 %\begin{itemize}
 %\item
-The use of open-source libraries is a factual reality in the software industry. Their usage has increased exponentially during the last decade and proportionally the number of security vulnerabilities that are introduced with them.  
+The use of open-source libraries is a factual reality in the software industry. In 2018, Synopsys\footnote{https://www.blackducksoftware.com/} found open-source code in more than 96\% of their audits\cite{Synopsys2019}. OSS \footnote{Open-Source Software} usage has increased exponentially during the last decade. The most popular source for libraries in the Java ecosystem, Maven Central Repository, growth 542.17\% from 2010 to 2016 \cite{Kula2018}. Another popular open-source repository for the Javascript ecosystem, npm growth from 0 packages at its creation in 2010 to 1,000,000 packages in 2019. \footnote{https://snyk.io/blog/npm-passes-the-1-millionth-package-milestone-what-can-we-learn/ accessed 10/10/2019}  
+The figure~\ref{PackageEvolution}\cite{Decan} shows the number of packages evolution on other popular ecosystems.
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.70]{PackagesEvolution.png}
+	\caption{Evolution of the number of packages.}
+	\label{PackageEvolution}
+\end{figure}
 %\item
 How to leverage the power of open source libraries and still manage the risk of vulnerabilities they carry is a problem that either remain ignored by many software engineers or present considerable challenges to them.
 
@@ -55,16 +62,19 @@ How to leverage the power of open source libraries and still manage the risk of 
 \textbf{Why the problem is not already solved or other solutions
 are ineffective in one or more important ways}
 
-%\begin{itemize}
-%\item
-During this paper important studies related to dependencies management will be presented along with the most recent studies about how to identify know vulnerabilities in open source libraries.
-
-%\item
 A 2014 study from Sonatype determined that over 6\% of the download requests from the Maven Central Repository were for component versions that included known vulnerabilities. In their review of over 1,500 applications, each of them had an average of 24 severe or critical flaws inherited from their components. \footnote{Report published January 02, 2015 at http://goo.gl/i8J1Zq.}
-A white paper produced by Contrast security, stated that over 25\% of all libraries download from Maven Central Repository has vulnerability. Only one vulnerable version of the Java GWT package was downloaded 17,666,703 times \cite{williams2012unfortunate,Kula2018,Decan2018,pashchenko2018esem,Derr2017,Alqahtani2017,Nguyen2016,Alqahtani2016,Plate2015,Cox2015,Cadariu2015,Perl2015,Nguyen2013,Williams2012}.
-This is the place to provide a succinct description of the problem context
-giving enough information to support the claim that a problem exists, made in
-the preceding problem declaration.
+A white paper produced by Contrast security, stated that over 25\% of all libraries download from Maven Central Repository has vulnerability. Only one vulnerable version of the Java GWT package was downloaded 17,666,703 times \cite{williams2012unfortunate}.
+Among the 10 most popular npm packages, 6 present 1 or more vulnerabilities \footnote{(https://snyk.io/blog/npm-passes-the-1-millionth-package-milestone-what-can-we-learn/ accessed 10/10/2019)}.
+
+In a study on security vulnerabilities impact\cite{Decan2018} the researchers found that out of 610,097 available packages (2017 data) 133,602 packages directly depend on a vulnerable package and 72,470 packages had at least one release that relies on a vulnerable package.
+In the same study, they also found a crescent number or vulnerabilities in the npm repository. The figure~\ref{SVEvolution} shows he evolution of the number of vulnerabilities and the impact on dependent packages. Comparing 2014 data, where the distinct packages (doted lines) impact almost the same number of dependent package (straight lines), with 2017 data, it is evident the  tendency of increasing impact on dependent packages.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.70]{SVEvolution.png}
+	\caption{Evolution of the number of discovered vulnerabilities (straight lines) and corresponding distinct packages (doted lines) per severity.}
+	\label{SVEvolution}
+\end{figure}
 
 %\end{itemize}
 
@@ -74,89 +84,205 @@ in some way that others are not}
 
 %\begin{itemize}
 %\item
-A succinct statement of {\em why} the reader should care enough to read the
-rest of the paper.
-
+During this paper studies related to dependencies management will be presented along with the most recent studies about how to identify know vulnerabilities in open source libraries.
 %\item
-This should include a statement about the characteristics of your solution to
-the problem which 1) make it a solution, and 2) make it superior to other
-solutions to the same problem.
-
-%\end{itemize}
-
-
-\textbf{How the rest of the paper is structured}
-%\begin{itemize}
-%\item
-The short statement below is often all you need, but you should change it when
-your paper has a different structure, or when more information is {\em
-required} to describe what a given section contains. If it isn't {\em required}
-then you don't want to say it here.
-
-%\end{itemize}
-
+The rest of this paper will cover studies on how long vulnerable package remains harmful and how long a fix takes to spread over the dependent applications \ref{sec:VulnerabilityTimeFrame}, what prevents software developers from updating their dependencies (section III) and solutions on how to manage the risk involved on open source libraries adoption.  
+ %\item
 The rest of this paper first discusses related work in
 \ref{sec:RelatedWork}, and then describes our implementation in
 \ref{sec:Implementation}. \ref{sec:Evaluation} describes how we evaluated
 our system and presents the results. \ref{sec:Conclusion} presents our
 conclusions and describes future work.
+%\end{itemize}
+\section{Vulnerability Timeframe}
+\label{sec:VulnerabilityTimeFrame}
 
-\section{Related Work}
-\label{sec:RelatedWork}
-
-\textbf{Other efforts that exist to solve this problem and why are they
-less effective than our method}
 
 %\begin{itemize}
 %\item
-Resist the urge to point out only flaws in other work. Do your best to point
-out both the strengths and weaknesses to provide as well rounded a view of how
-your idea relates to other work as possible
+To analyze for how long a vulnerability is harmful the study \cite{Decan2018} used a 700 security vulnerabilities report made available by Snyk.io \footnote{https://snyk.io} and retrieved the list of its releases from the open source discovery service libraries.io \cite{Nesbitt2017}. Based on the list of releases, they identified which ones were affected by the vulnerability.
+Based on the relationship between package, vulnerability, first release data, vulnerability discovery date, it was possible to trace a vulnerability timeframe.
 
+\textbf{How long does the package remains vulnerable}
 %\item
-In a social and political sense, it is {\em very smart} as well as ethical to
-say good things, which are true, about other people's work. A major motivation
-for this is that editors and program committee members have to get a set of
-reviews for your paper. The easiest way for them to decide who should review it
-is to look at the set of references to {\em related work} to find people who are likely to be competent to
-review your paper.  The people whose work you talk about are thus likely to be
-reading what you say about {\em their} work while deciding what to say about
-{\em your} work.
+Figure~\ref{RemainsVulnerable} shows Kaplan-Meier estimator  curve \cite{Kaplan1958} for the event “vulnerability is fixed”. The data presented considers the date of the affected release and the date that the fix was available. After 10 months, there is a probability higher than 80\% that a high severity vulnerability is still unfixed.
 
-%\item
-Clear enough? Speak the truth, say what you have to say, but be generous to the
-efforts of others.
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.70]{RemainsVulnerable.png}
+	\caption{Survival probability for event “vulnerability is fixed” w.r.t. the date of first affected release.}
+	\label{RemainsVulnerable}
+\end{figure}
 
 %\end{itemize}
 
 
-\textbf{Other efforts that exist to solve related problems that are
-relevant, how are they relevant, and why are they less effective than our
-solution for this problem}
+\textbf{When a vulnerability is discovered}
+%\item 
+Figure~\ref{WhenDiscovered} shows that most severities are discovered in old packages. 75\% of all vulnerabilities are found in libraries older than 13 months. Even tough it was not highlighted in the original study, the shorter wave in high severity vulnerabilities may suggest the higher priority in which they are handled, especially when compared to the low severity graph that shows smother curves. Most severities are found in packages older than 28 months.
 
-%\begin{itemize}
-%\item
-Many times no one has solved your exact problem before, but others have solved
-closely related problems or problems with aspects that are strongly analogous
-to aspects of your problem
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.45]{WhenDiscovered.png}
+	\caption{Violin plots of packages age at discovery time by vulnerability severity.}
+	\label{WhenDiscovered}
+\end{figure}
 
 %\end{itemize}
 
-\section{Implementation}
-\label{sec:Implementation}
+\textbf{When a vulnerability is fixed}
+%\item 
+Most of the vulnerabilities are fixed between the discovery date and the public announcement. Figure~\ref{WhenIsFixed} shows that there is a probability of 50\% of a fix becomes available in the first month after discovery. And 80\% of all vulnerabilities are fixed between 12 and 13 months. After 20 months of the discovery all high severity vulnerabilities were fixed. Some medium severity vulnerabilities, according to the graph, will take more than 40 months to be fixed.
 
-\textbf{What we (will do $|$ did): {\em Our Solution}}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.75]{WhenIsFixed.png}
+	\caption{Survival probability for event "vulnerability is fixes" w.r.t. vulnerability discovery time.}
+	\label{WhenIsFixed}
+\end{figure}
+
+%\end{itemize}
+
+
+\textbf{When a vulnerability is fixed in a dependent package}
+%\item 
+The impact on dependent packages is important due to increasing number of dependencies, faster then the number of available packages. The figure~\ref{DependenciesGrowing} shows a more step curve when compared to the number of available packages (figure~\ref{PackageEvolution}). 
+Figure~\ref{WhenIsFixedDependentPackages} shows that after 20 months, 100\% of  high severity vulnerabilities are fixed while there are 40\% of the dependencies vulnerable at the same time. The slowness on updating dependencies found in this study is supported by similar findings in different studies covering a wide range of ecosystems such as SmallTalk\cite{Robbes:2012:DRA:2393596.2393662}, Pharo\cite{7332471}, Java \cite{7816485}, Apache products\cite{Bavota2015}, Windows ecosystem \cite{7163055}, and Javascript ecosystem \cite{Lauinger}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.40]{DependenciesGrowing.png}
+	\caption{Evolution of the number of dependencies (considering for each point in time the latest available
+		release of each package).}
+	\label{DependenciesGrowing}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.40]{WhenIsFixedDependentPackages.png}
+	\caption{Survival probability for event “package is fixed” w.r.t. vulnerability discovery time. Dependent packages are
+		shown as straight lines and upstream packages as dotted lines.}
+	\label{WhenIsFixedDependentPackages}
+\end{figure}
+
+%\end{itemize}
+
+\section{Developer's Timeframe}
+\label{sec:DevelopersTimeFrame}
+
+
 %\begin{itemize}
 %\item
-Another way to look at this section is as a paper, within a paper,
-describing your implementation. That viewpoint makes this the introduction to
-the subordinate paper, which should describe the overall structure of your
-implementation and how it is designed to address the problem effectively.
+To understand the vulnerabilities timeframe it is required to understand the application's maintainer behavior on updating and selecting their dependencies. A study \cite{Derr2017} conducted with 203 app developers from Google Play clarified the following research questions: What is the common workflow to search for and to integrate third-party libraries into applications? How frequently do developers update their apps/libs and what is their main motivation for updates?
+What are possible reasons to not update dependencies and what solutions could app developers think of?
+%\item 
+Based on the applications maintainer's answers, the study conclude that 78\% of them do not have a fixed schedule for app update (Figure~\ref{IsYourAppUpdatedFixedSchedule}) and only 33\% of them mention a library update as a reason to update their app (Figure~\ref{ForWhichReasonUpdate}). When the maintainers were questioned why do you update your app's libraries, 96.47\% of them answered bug fixing and 57.65\% mentioned security (figure~\ref{WhyDoYouUpdateYourLibrary}). Regarding library selection criteria, only 26.58\% answered security, even thought the answer update frequency is related and received 35.16\% of the votes (figure~\ref{LibrarySelectionCriteria}). When asked reasons why your app would include outdated libraries?, 57.03\% answered that the library was still working, 50\% answered to prevent incompatibilities and 32.81\% were unaware of updates (figure~\ref{ReasonsOutdatedLibrary}).
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.30]{IsYourAppUpdatedFixedSchedule.png}
+	\caption{Anwsers for questions regarding app/library release frequency.}
+	\label{IsYourAppUpdatedFixedSchedule}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.35]{ForWhichReasonUpdate.png}
+	\caption{Answers for questions:For which reason do you update your app?}
+	\label{ForWhichReasonUpdate}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.35]{WhyDoYouUpdateYourLibrary.png}
+	\caption{Answers for questions: Why do you update your apps' libraries?}
+	\label{WhyDoYouUpdateYourLibrary}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.30]{LibrarySelectionCriteria.png}
+	\caption{Answers for questions: Chose libraries according to specific criteria?}
+	\label{LibrarySelectionCriteria}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.28]{ReasonsOutdatedLibrary.png}
+	\caption{Answers for questions: Reason why your app would include outdated libraries?}
+	\label{ReasonsOutdatedLibrary}
+\end{figure}
+
+%\begin{itemize}
+%\item 
+The study concludes that the main reasons to keep a library outdated are incompatibility prevention, unaware of updates and too much effort. Other study on this field \cite{Kula2018} reaches at the same conclusion regarding why maintainers keep outdated dependencies. On following sections, studies that proposed ways to deal with those main problems are presented along with their conclusions.
+
+%\end{itemize}
+\section{Increasing awareness and reducing effort on dependency management}
+\label{sec:IncreasingAwarenessReducingEffort}
+
+%\begin{itemize}
+%\item
+Various researchers have worked to solve the problem of know vulnerabilities in open source packages and their dependencies. In this section, the most recent works will be presented along with their conclusions.
+
+\textbf{Predicting vulnerabilities:}
+%\begin{itemize}
+%\item
+Even thought the focus of this work is on papers that detect vulnerabilities using know vulnerabilities database, it is worth mentioning that there is a branch of proposed solutions that operates identifying vulnerabilities based on a set of characteristics. Part of this solutions uses machine learning to identify vulnerabilities. One of this works \cite{Perl2015} mapped the CVE entries to the commit that generated the vulnerability and trained a SVM-based model using the commit's metadata. According to the authors this method reduced the amount of false positives by 99\% when compared to Flawfinder\footnote{https://https://dwheeler.com/flawfinder/}. It was capable of detecting 53 of the 219 known vulnerabilities used in the study and only producing 36 false positives. The proposed solution analyses each commit and tries to predict the presence of vulnerabilities.
+%\end{itemize}
+
+\textbf{Measuring dependency freshness:}
+%\begin{itemize}
+%\item
+The study \cite{Cox2015} proposes a method to measure the dependency freshness. The authors used information from project's pom.xml file to determiner what is the version being used and used the Maven Central Repository to determine the release history for the library. Based on this information, the authors were able to classify each used component in a risk profile with 4 categories: low, moderate, high and very high.
+To determine the relationship between their risk profile and the security vulnerabilities the researchers matched the dependencies list and tried to match with the CVE vulnerability database. They were able to find a correlation between their freshness index and the number of vulnerabilities. The median variance of the rating, the researchers were able to classify the systems according to dependency freshness:
+\begin{itemize}
+	\item \textbf{Stable} Systems with a stable dependency freshness rating. The system dependencies see little to no updates.
+	\item \textbf{Improving} Systems with an increasing dependency freshness
+	rating. Dependencies are updated faster than they are released.
+	\item \textbf{Declining} Systems with an decreasing dependency freshness
+	rating. Dependencies are updated slower than they are released.
+\end{itemize}
+
+The metrics presented have a great potential in quantifying the dependency freshness. The method has at least one serious limitation: only direct dependencies can be measure, which can generate wrong classifications, specially when direct dependency is updated but a transient dependency exists and is outdated.  
+
+\textbf{Library updatability:}
+%\begin{itemize}
+%\item
+The study \cite{Cox2015} was able to correlated library freshness with number of vulnerabilities. The finding that old libraries carry more vulnerabilities is also supported by other works \cite{Decan2018,Synopsys2019}. The study \cite{Derr2017} proposes an automated method to evaluate the updatability of dependencies. Their method consist of three steps: determine the API robustness, determine the library usage and determine the library updatability.
+%\item
+To determine the API robustness, the researchers extracted the public API from multiple versions of the same library, resulting in a library version/API pair list. According to authors this is a more fine-grained approach compared to \cite{Backes2016}. The authors then proceed with the library usage, where they inspect the bytecode looking for call to the API. Finally they matched the library version/APi pair list with the library usage to produce the library updatability, which informs what is the latest version the API can be updated to without causing incompatibilities.
+
+The authors test their approach analyzing 98 libraries and 1,246,118 apps from Google Play. The results shows that in 85.6\% of the cases the identified library can be upgraded by at least one version (Upgrade1+) and on 48.2\% of the cases the library can be updated to the most current version simply by replace the old library, without any code change. Figure~\ref{LibraryUpdatability} shows the library updatability from their study.
+ 
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.28]{LibraryUpdatability.png}
+	\caption{Library updatability of current apps on Google Play.}
+	\label{LibraryUpdatability}
+\end{figure}
+
+
+%\end{itemize}
+
+\textbf{Vulnerability Alert Service (VAS):}
+%\begin{itemize}
+%\item
+The Vulnerability Alert Service (VAS) is proposed by \cite{Cadariu2015}. Their focus is to increase the awareness about known vulnerabilities by making it part of the software quality process. The overall process is illustrated by figure ~\ref{VASProcess}. The target project has its dependencies extracted and recognized. The list of dependencies is then analyzed by the matching task, which tries to match the dependency with a entry from the vulnerability disclosures, in this study a CVE entry. Upon a successful match, an alert is produced which is consumed by a human operator. The authors extended the OWASP Dependency Check Tool to extract the dependency list from Maven pom.xml files and used this tool as the vulnerability checker described in the diagram.
+%\item
+The conclusion of this work shows a false positive rate of over 70\%, but the authors state that the rate is smaller when the solution was actually deployed. 
+The researchers affirm that the high false-positive can be caused by situations like the MySQL-connector jar which is flagged with the vulnerabilities of the MySQL database server. The evaluation with the human operators shown that despite the false positive rate, an alert system was considered useful. Even the authors were satisfied with the operators' evaluation, since their solution looks for dependencies in pom.xml files, only direct dependencies can be identified.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.28]{VASProcess.png}
+	\caption{The Vulnerability Alert Service process}
+	\label{VASProcess}
+\end{figure}
+%\end{itemize}
+
+
 
 %\item
 Then, describe the structure of the rest of this section, and what each
 subsection describes.
-
+%\end{itemize}
 
 \textbf{How our solution (will $|$ does) work}
 %\begin{itemize}

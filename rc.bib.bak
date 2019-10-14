@@ -5,6 +5,8 @@
   title   = {Keep me Updated: An Empirical Study of Third-Party Library Updatability on Android},
   journal = {Proceedings of the 2017 ACM SIGSAC Conference on Computer and Communications Security},
   year    = {2017},
+  comment = {Covered},
+  url     = {https://dl.acm.org/citation.cfm?id=3134059},
 }
 
 @Article{Alqahtani2017,
@@ -33,6 +35,7 @@
   pages     = {411-420},
   month     = {Sep.},
   abstract  = {Software applications integrate more and more open-source software (OSS) to benefit from code reuse. As a drawback, each vulnerability discovered in bundled OSS may potentially affect the application that includes it. Upon the disclosure of every new vulnerability, the application vendor has to assess whether such vulnerability is exploitable in the particular usage context of the applications, and needs to determine whether customers require an urgent patch containing a non-vulnerable version of the OSS. Unfortunately, current decision making relies mostly on natural-language vulnerability descriptions and expert knowledge, and is therefore difficult, time-consuming, and error-prone. This paper proposes a novel approach to support the impact assessment based on the analysis of code changes introduced by security fixes. We describe our approach using an illustrative example and perform a comparison with both proprietary and open-source state-of-the-art solutions. Finally we report on our experience with a sample application and two industrial development projects.},
+  comment   = {detect if a vulnerable library actually impacts a software},
   doi       = {10.1109/ICSM.2015.7332492},
   keywords  = {decision making;public domain software;software libraries;open-source software library;OSS;decision making;natural-language vulnerability description;Libraries;Security;Runtime;Open source software;Java;Engines},
 }
@@ -43,6 +46,7 @@
   journal = {Empirical Software Engineering},
   year    = {2018},
   volume  = {23},
+  comment = {covered},
   doi     = {4-017-9521-5},
   url     = {https://link.springer.com/content/pdf/10.1007/s10664-017-9521-5.pdf},
 }
@@ -55,6 +59,7 @@
   pages     = {516-519},
   month     = {March},
   abstract  = {Known security vulnerabilities can be introduced in software systems as a result of being dependent upon third-party components. These documented software weaknesses are “hiding in plain sight” and represent low hanging fruit for attackers. In this paper we present the Vulnerability Alert Service (VAS), a tool-based process to track known vulnerabilities in software systems throughout their life cycle. We studied its usefulness in the context of external software product quality monitoring provided by the Software Improvement Group, a software advisory company based in Amsterdam, the Netherlands. Besides empirically assessing the usefulness of the VAS, we have also leveraged it to gain insight and report on the prevalence of third-party components with known security vulnerabilities in proprietary applications.},
+  comment   = {Proposes an alert system VAS to warn developers about outdated libraries},
   doi       = {10.1109/SANER.2015.7081868},
   keywords  = {outsourcing;safety-critical software;software houses;software quality;known security vulnerability tracking;proprietary software systems;third-party components;documented software weaknesses;vulnerability alert service;tool-based process;software systems;software life cycle;external software product quality monitoring;software improvement group;software advisory company;Amsterdam;Netherlands;empirical analysis;VAS usefulness assessment;proprietary applications;Security;Monitoring;Software systems;Java;Context;Companies},
 }
@@ -118,6 +123,7 @@
   address   = {Piscataway, NJ, USA},
   publisher = {IEEE Press},
   acmid     = {2819027},
+  comment   = {Proposes a metric to evaluate dependency freshness},
   location  = {Florence, Italy},
   numpages  = {10},
   url       = {http://dl.acm.org/citation.cfm?id=2819009.2819027},
@@ -135,6 +141,8 @@
   issn       = {1382-3256},
   acmid      = {3023247},
   address    = {Hingham, MA, USA},
+  comment    = {Method to detect vulnerabilit
+Terminology section},
   doi        = {10.1007/s10664-015-9408-2},
   issue_date = {December 2016},
   keywords   = {Browsers, Empirical validation, National vulnerability database (NVD), Software security, Vulnerability analysis},
@@ -171,7 +179,7 @@
   url    = {https://link.springer.com/content/pdf/10.1007/s10664-017-9589-y.pdf},
 }
 
-@Dataset{andrew_nesbitt_2017_808273,
+@Dataset{Nesbitt2017,
   author    = {Andrew Nesbitt and Benjamin Nickolls},
   title     = {{Libraries.io Open Source Repository and Dependency Metadata}},
   month     = jun,
@@ -180,6 +188,127 @@
   publisher = {Zenodo},
   url       = {https://doi.org/10.5281/zenodo.808273},
   version   = {1.0.0},
+}
+
+@InProceedings{Robbes:2012:DRA:2393596.2393662,
+  author    = {Robbes, Romain and Lungu, Mircea and R\"{o}thlisberger, David},
+  title     = {How Do Developers React to API Deprecation?: The Case of a Smalltalk Ecosystem},
+  booktitle = {Proceedings of the ACM SIGSOFT 20th International Symposium on the Foundations of Software Engineering},
+  year      = {2012},
+  series    = {FSE '12},
+  pages     = {56:1--56:11},
+  address   = {New York, NY, USA},
+  publisher = {ACM},
+  acmid     = {2393662},
+  articleno = {56},
+  doi       = {10.1145/2393596.2393662},
+  isbn      = {978-1-4503-1614-9},
+  keywords  = {ecosystems, empirical studies, mining software repositories},
+  location  = {Cary, North Carolina},
+  numpages  = {11},
+  url       = {http://doi.acm.org/10.1145/2393596.2393662},
+}
+
+@InProceedings{7332471,
+  author    = {A. {Hora} and R. {Robbes} and N. {Anquetil} and A. {Etien} and S. {Ducasse} and M. T. {Valente}},
+  title     = {How do developers react to API evolution? The Pharo ecosystem case},
+  booktitle = {2015 IEEE International Conference on Software Maintenance and Evolution (ICSME)},
+  year      = {2015},
+  pages     = {251-260},
+  month     = {Sep.},
+  doi       = {10.1109/ICSM.2015.7332471},
+  keywords  = {application program interfaces;software engineering;user interfaces;API evolution;Pharo ecosystem case;software engineering research;user interface;software ecosystems;Ecosystems;Open source software;Context;History;Computer science;Association rules},
+}
+
+@InProceedings{7816485,
+  author    = {A. A. {Sawant} and R. {Robbes} and A. {Bacchelli}},
+  title     = {On the Reaction to Deprecation of 25,357 Clients of 4+1 Popular Java APIs},
+  booktitle = {2016 IEEE International Conference on Software Maintenance and Evolution (ICSME)},
+  year      = {2016},
+  pages     = {400-410},
+  month     = {Oct},
+  abstract  = {Application Programming Interfaces (APIs) are a tremendous resource-that is, when they are stable. Several studies have shown that this is unfortunately not the case. Of those, a large-scale study of API changes in the Pharo Smalltalk ecosystem documented several findings about API deprecations and their impact on API clients. We conduct a partial replication of this study, considering more than 25,000 clients of five popular Java APIs on GitHub. This work addresses several shortcomings of the previous study, namely: a study of several distinct API clients in a popular, statically-typed language, with more accurate version information. We compare and contrast our findings with the previous study and highlight new ones, particularly on the API client update practices and the startling similarities between reaction behavior in Smalltalk and Java.},
+  doi       = {10.1109/ICSME.2016.64},
+  keywords  = {Java;public domain software;popular Java APIs;application programming interfaces;Pharo Smalltalk ecosystem;GitHub;Java;Ecosystems;History;Programming;Software;Libraries;Documentation;API;deprecation;mining software repositories},
+}
+
+@Article{Bavota2015,
+  author   = {Bavota, Gabriele and Canfora, Gerardo and Di Penta, Massimiliano and Oliveto, Rocco and Panichella, Sebastiano},
+  title    = {How the Apache community upgrades dependencies: an evolutionary study},
+  journal  = {Empirical Software Engineering},
+  year     = {2015},
+  volume   = {20},
+  number   = {5},
+  pages    = {1275--1317},
+  month    = {Oct},
+  issn     = {1573-7616},
+  abstract = {Software ecosystems consist of multiple software projects, often interrelated by means of dependency relations. When one project undergoes changes, other projects may decide to upgrade their dependency. For example, a project could use a new version of a component from another project because the latter has been enhanced or subject to some bug-fixing activities. In this paper we study the evolution of dependencies between projects in the Java subset of the Apache ecosystem, consisting of 147 projects, for a period of 14 years, resulting in 1,964 releases. Specifically, we investigate (i) how dependencies between projects evolve over time when the ecosystem grows, (ii) what are the product and process factors that can likely trigger dependency upgrades, (iii) how developers discuss the needs and risks of such upgrades, and (iv) what is the likely impact of upgrades on client projects. The study results---qualitatively confirmed by observations made by analyzing the developers' discussion---indicate that when a new release of a project is issued, it triggers an upgrade when the new release includes major changes (e.g., new features/services) as well as large amount of bug fixes. Instead, developers are reluctant to perform an upgrade when some APIs are removed. The impact of upgrades is generally low, unless it is related to frameworks/libraries used in crosscutting concerns. Results of this study can support the understanding of the of library/component upgrade phenomenon, and provide the basis for a new family of recommenders aimed at supporting developers in the complex (and risky) activity of managing library/component upgrade within their software projects.},
+  day      = {01},
+  doi      = {10.1007/s10664-014-9325-9},
+  url      = {https://doi.org/10.1007/s10664-014-9325-9},
+}
+
+@InProceedings{Bogart:2016:BAC:2950290.2950325,
+  author    = {Bogart, Christopher and K\"{a}stner, Christian and Herbsleb, James and Thung, Ferdian},
+  title     = {How to Break an API: Cost Negotiation and Community Values in Three Software Ecosystems},
+  booktitle = {Proceedings of the 2016 24th ACM SIGSOFT International Symposium on Foundations of Software Engineering},
+  year      = {2016},
+  series    = {FSE 2016},
+  pages     = {109--120},
+  address   = {New York, NY, USA},
+  publisher = {ACM},
+  acmid     = {2950325},
+  comment   = {How developers are mitigating the risk},
+  doi       = {10.1145/2950290.2950325},
+  isbn      = {978-1-4503-4218-6},
+  keywords  = {Collaboration, Dependency management, Qualitative research, Software ecosystems, semantic versioning},
+  location  = {Seattle, WA, USA},
+  numpages  = {12},
+  url       = {http://doi.acm.org/10.1145/2950290.2950325},
+}
+
+@InProceedings{7163055,
+  author    = {A. {Nappa} and R. {Johnson} and L. {Bilge} and J. {Caballero} and T. {Dumitras}},
+  title     = {The Attack of the Clones: A Study of the Impact of Shared Code on Vulnerability Patching},
+  booktitle = {2015 IEEE Symposium on Security and Privacy},
+  year      = {2015},
+  pages     = {692-708},
+  month     = {May},
+  abstract  = {Vulnerability exploits remain an important mechanism for malware delivery, despite efforts to speed up the creation of patches and improvements in software updating mechanisms. Vulnerabilities in client applications (e.g., Browsers, multimedia players, document readers and editors) are often exploited in spear phishing attacks and are difficult to characterize using network vulnerability scanners. Analyzing their lifecycle requires observing the deployment of patches on hosts around the world. Using data collected over 5 years on 8.4 million hosts, available through Symantec's WINE platform, we present the first systematic study of patch deployment in client-side vulnerabilities. We analyze the patch deployment process of 1,593 vulnerabilities from 10 popular client applications, and we identify several new threats presented by multiple installations of the same program and by shared libraries distributed with several applications. For the 80 vulnerabilities in our dataset that affect code shared by two applications, the time between patch releases in the different applications is up to 118 days (with a median of 11 days). Furthermore, as the patching rates differ considerably among applications, many hosts patch the vulnerability in one application but not in the other one. We demonstrate two novel attacks that enable exploitation by invoking old versions of applications that are used infrequently, but remain installed. We also find that the median fraction of vulnerable hosts patched when exploits are released is at most 14%. Finally, we show that the patching rate is affected by user-specific and application-specific factors, for example, hosts belonging to security analysts and applications with an automated updating mechanism have significantly lower median times to patch.},
+  doi       = {10.1109/SP.2015.48},
+  keywords  = {invasive software;software reliability;vulnerability patching;shared code;malware delivery;software updating mechanisms;spear phishing attacks;network vulnerability scanners;software lifecycle analysis;Symantec WINE platform;application-specific factors;user-specific factors;automated updating mechanism;Software;Delays;Libraries;Security;Databases;Sociology;Statistics;software vulnerabilities;patch deployment;shared code;client applications;vulnerability exploits},
+}
+
+@Article{Lauinger,
+  author = {Tobias Lauinger and Abdelberi Chaabane and Sajjad Arshad and William Robertson and Christo Wilson and Engin Kirda},
+  title  = {Thou Shalt Not Depend on Me: Analysing the Use of Outdated JavaScript Libraries on the Web},
+  doi    = {10.14722/ndss.2017.23414},
+  url    = {https://arxiv.org/abs/1811.00918},
+}
+
+@Article{Synopsys2019,
+  author  = {Synopsys},
+  title   = {2019 Open Source Security And Risk Analysis},
+  journal = {Synopsys Open Source Security and Risk Analysis},
+  year    = {2019},
+}
+
+@InProceedings{Backes:2016:RTL:2976749.2978333,
+  author    = {Backes, Michael and Bugiel, Sven and Derr, Erik},
+  title     = {Reliable Third-Party Library Detection in Android and Its Security Applications},
+  booktitle = {Proceedings of the 2016 ACM SIGSAC Conference on Computer and Communications Security},
+  year      = {2016},
+  series    = {CCS '16},
+  pages     = {356--367},
+  address   = {New York, NY, USA},
+  publisher = {ACM},
+  acmid     = {2978333},
+  doi       = {10.1145/2976749.2978333},
+  isbn      = {978-1-4503-4139-4},
+  keywords  = {android, third-party library detection},
+  location  = {Vienna, Austria},
+  numpages  = {12},
+  url       = {http://doi.acm.org/10.1145/2976749.2978333},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
