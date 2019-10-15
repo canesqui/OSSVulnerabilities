@@ -10,7 +10,7 @@
 %Included for Gather Purpose in WinEdt only:
 %input "rc.bib"
 
-\title{\bf Identifying Known Vulnerabilies in OSS libraries - A survey}
+\title{\bf Survey Paper - Identifying Known Vulnerabilies in OSS libraries}
 
 \author{Ronaldo Canesqui\\
 Southern Adventist University\\
@@ -152,8 +152,8 @@ Figure~\ref{WhenIsFixedDependentPackages} shows that after 20 months, 100\% of h
 
 %\begin{itemize}
 %\item
-To understand the vulnerabilities lifespan it is required to understand current dependencies management practices specially on updating and selecting dependencies. A study \cite{Derr2017} conducted with 203 app developers from Google Play clarified the following research questions: How frequently do developers update their apps/libs and what is their main motivation for updates?
-What are possible reasons to not update dependencies and what solutions could app developers think of?
+To understand the vulnerabilities lifespan it is required to understand current dependencies management practices specially on updating and selecting dependencies. A study \cite{Derr2017} conducted with 203 app developers from Google Play clarified the following research questions: {\em How frequently do developers update their apps/libs and what is their main motivation for updates?}
+{\em What are possible reasons to not update dependencies and what solutions could app developers think of?}
 %\item 
 Based on the application maintainers' answers, the study concludes that 78\% of them do not have a fixed schedule for app updates (Figure~\ref{IsYourAppUpdatedFixedSchedule}) and only 33\% of them mention a library update as a reason to update their app (Figure~\ref{ForWhichReasonUpdate}). When the maintainers were questioned why do you update your app's libraries, 96.47\% of them answered bug fixing and 57.65\% mentioned security (figure~\ref{WhyDoYouUpdateYourLibrary}). Regarding library selection criteria, only 26.58\% answered security, even thought the answer update frequency is related and received 35.16\% of the votes (figure~\ref{LibrarySelectionCriteria}). When asked reasons why your app would include outdated libraries?, 57.03\% answered that the library was still working, 50\% answered to prevent incompatibilities and 32.81\% were unaware of updates (figure~\ref{ReasonsOutdatedLibrary}).
 
@@ -198,7 +198,7 @@ The study concludes that the main reasons to keep a library outdated are incompa
 
 %\begin{itemize}
 %\item
-Various researchers have worked to solve the problem of know vulnerabilities in open-source packages and their dependencies. In this section, the most recent works will be presented along with their conclusions.
+Various researchers have worked to solve the problem of know vulnerabilities in open-source packages and their dependencies. In this section, the most recent works will be presented along with their conclusions. This is not a comprehensive list but it offers a similar variety of methods and complexity of other works not covered here.
 
 \textbf{Predicting vulnerabilities:}
 %\begin{itemize}
@@ -209,7 +209,7 @@ Although the focus of this work is on papers that detect vulnerabilities using k
 \textbf{Measuring dependency freshness:}
 %\begin{itemize}
 %\item
-The study \cite{Cox2015} proposes a method to measure the dependency freshness. The authors used information from the projects' pom.xml file to determine the libraries' version and used the Maven Central Repository to determine the release history for the library. Based on this information, the authors were able to classify each used component in a risk profile with 4 categories: low, moderate, high and very high.
+The study \cite{Cox2015} proposes a method to measure the dependency freshness. The authors used information from the projects' {\em pom.xml} file to determine the libraries' version and used the Maven Central Repository to determine the release history for the library. Based on this information, the authors were able to classify each used component in a risk profile with 4 categories: low, moderate, high and very high.
 To determine the relationship between their risk profile and the security vulnerabilities the researchers matched the dependencies list and tried to match with the CVE vulnerability database. They were able to find a correlation between their freshness index and the number of vulnerabilities. The median variance of the rating, the researchers were able to classify the systems according to dependency freshness:
 \begin{itemize}
 	\item \textbf{Stable} Systems with a stable dependency freshness rating. The system dependencies see little to no updates.
@@ -243,10 +243,10 @@ The authors test their approach analyzing 98 libraries and 1,246,118 apps from G
 \textbf{Vulnerability Alert Service (VAS)}
 %\begin{itemize}
 %\item
-The Vulnerability Alert Service (VAS) is proposed by \cite{Cadariu2015}. Their focus is to increase the awareness about known vulnerabilities by making it part of the software quality process. The overall process is illustrated in figure ~\ref{VASProcess}. First, the target project has its dependencies extracted and recognized. Then, list of dependencies is analyzed by the matching task, which tries to match the dependency with an entry from the vulnerability disclosures, in this study a CVE entry. Upon a successful match, an alert is produced which is consumed by a human operator. The authors extended the OWASP Dependency Check Tool to extract the dependencies list from Maven pom.xml files and used this tool as the vulnerability checker described in the diagram.
+The Vulnerability Alert Service (VAS) is proposed by \cite{Cadariu2015}. Their focus is to increase the awareness about known vulnerabilities by making it part of the software quality process. The overall process is illustrated in figure ~\ref{VASProcess}. First, the target project has its dependencies extracted and recognized. Then, list of dependencies is analyzed by the matching task, which tries to match the dependency with an entry from the vulnerability disclosures, in this study a CVE entry. Upon a successful match, an alert is produced which is consumed by a human operator. The authors extended the OWASP Dependency Check Tool to extract the dependencies list from Maven {\em pom.xml} files and used this tool as the vulnerability checker described in the diagram.
 %\item
 The conclusion of this work shows a false positive rate of over 70\%, but the authors state that the rate is smaller when the solution was actually deployed. 
-The researchers affirm that the high false-positive can be caused by situations like the MySQL-connector jar which is flagged with the vulnerabilities of the MySQL database server. The evaluation with the human operators shown that despite the false positive rate, an alert system was considered useful. Even the authors were satisfied with the operators' evaluation, since their solution looks for dependencies in pom.xml files, only direct dependencies can be identified.
+The researchers affirm that the high false-positive can be caused by situations like the MySQL-connector jar which is flagged with the vulnerabilities of the MySQL database server. The evaluation with the human operators shown that despite the false positive rate, an alert system was considered useful. Even the authors were satisfied with the operators' evaluation, since their solution looks for dependencies in {\em pom.xml} files, only direct dependencies can be identified.
 
 \begin{figure}[h]
 	\centering
@@ -260,109 +260,50 @@ The researchers affirm that the high false-positive can be caused by situations 
 \textbf{Code-based vulnerability identification}
 %\begin{itemize}
 %\item
-The study \cite{Ponta2018} uses a method to identify vulnerabilities that, according to the authors, is more accurate then the methods proposed so far. Their work aims to answer the questions: does my application is vulnerable if it uses a vulnerable dependency? The researchers claim that this is not always the case and other studies failed to answer this question. The authors state that the software that contains a certain library that has known vulnerability does not need to be subject to costly efforts if proven that the vulnerability does not present harm. This way, the fix can be applied in the subsequent releases under no additional cost. Conceptually their solution can be used on any ecosystem, but their implementation is based on the Java ecosystem and the Maven Central Repository. They used the project’s pom.xml file to determine the dependencies. After the dependencies are determined, they remove all dependencies classified as provided and test, since those will not be deployed. Then the halted libraries are identified. 
-One key aspect for this approach to work is a database vulnerability that contains the meta-data about library, such as name and version according to Maven Central Repository, the vulnerable source code and the source code for the fix. Using this database is possible to associate the dependency identified previously and the vulnerability, along with the source-code. This database was manually produced by the authors it covers 90\% of Java ecosystem vulnerabilities.
-The authors used static and dynamic analysis to determine if the vulnerable code is reachable. The dynamically analysis is done by instrumenting the vulnerable code and running automated and manual tests.
-Their solution will notify the user if the vulnerability has impact on the application, meaning, the vulnerable code can be reached.
+The study \cite{Ponta2018} uses a method to identify vulnerabilities that, according to the authors, is more accurate than the methods proposed so far. Their work aims to answer the questions: {\em does my application is vulnerable if it uses a vulnerable dependency?} The researchers claim that this is not always the case and other studies failed to answer this question. The authors state that the software that contains a certain library that has known vulnerability does not need to be subject to costly efforts if proven that the vulnerability does not present harm. This way, the fix can be applied in the subsequent releases under no additional cost. Conceptually their solution can be used on any ecosystem, but their implementation is based on the Java ecosystem and the Maven Central Repository. They used the project’s {\em pom.xml} file to determine the dependencies. After the dependencies are determined, they remove all dependencies classified as provided and test, since those will not be deployed. Then the halted libraries\footnote{Libraries that do not receive an updated in a certain period of time define by the study.} are identified and removed. 
+%\item
+One key aspect for this approach to work is a database vulnerability that contains the meta-data about the library, such as name and version according to Maven Central Repository, the vulnerable source code and the source code for the fix. Using this database is possible to associate the dependency identified previously and the vulnerability, along with the source code involved in the vulnerability. This database was manually produced by the authors using CVE entries and it covers 90\% of Java ecosystem vulnerabilities.
+%\item
+The authors used static and dynamic analysis to determine if the vulnerable code is reachable. The dynamical analysis is done by instrumenting the vulnerable code and running automated and manual tests.
+Their solution will notify the user if the vulnerability has impact on the application, meaning, the vulnerable code can be reached and also notify about the presence of halted libraries.
 
 %\item
-Other studies from the same authors use the same method to identify know vulnerabilities but focus on different aspects of the solution. \cite{Plate2015} introduces a simpler but very similar method to the one previously described. It was presented as a proof-of-concept and targets performance comparison between their approach, OWASP Dependency Check and two commercial tools.  \cite{pashchenko2018esem} focus on how the impact of know vulnerabilities is inflated because other studies are counting vulnerable dependencies that are not deployed, such as libraries related to tests. 
+Other studies from the same authors use the same method to identify known vulnerabilities but focus on different aspects of the solution. \cite{Plate2015} introduces a simpler but very similar method to the one previously described. It was presented as a proof-of-concept and targets performance comparison between their approach, OWASP Dependency Check and two commercial tools.  \cite{pashchenko2018esem} focuses on how the impact of know vulnerabilities is inflated because other studies are counting vulnerable dependencies that are not deployed, such as libraries that are only used during tests. 
 %\end{itemize}
 
 %\item
-Then, describe the structure of the rest of this section, and what each
-subsection describes. \cite{Plate2015}
-%\end{itemize}
-
-\textbf{How our solution (will $|$ does) work}
-%\begin{itemize}
-%\item
-This is the body of the subordinate paper describing your solution. It
-may be divided into several subsections as required by the nature of your
-implementation.
-
-%\item
-The level of detail about how the solution works is determined by what
-is appropriate to the type of paper (conference, journal, technical report)
-
-%\item
-This section can be fairly short for conference papers, fairly long for
-journal papers, or {\em quite} long in technical reports. It all depends on the
-purpose of the paper and the target audience
-
-%\item
-Proposals are necessarily a good deal more vague in this section since
-you have to convince someone you know enough to have a good chance of building
-a solution, but that you have not {\em already} done so.
+According to the researchers, the code-based identification method is superior to the ones based on meta-data, since it does not suffer from problems such library artifacts renamed, named inconsistently and the fact that libraries can be extracted and repacked as a single self-contained archive. All these problems affect meta-data based identification. In the study \cite{Plate2015} the authors claim this method is the state-of-art in the filed.
+This method is the officially recommended by SAP to scan projects and it is used by over 500 distinct development projects.
 
 %\end{itemize}
-
 
 \section{Main Challenges}
 \label{sec:MainChallenges}
 
-\textbf{How we tested our solution}
+
+%\item
+Although other studies on identifying known vulnerabilities do not explicitly mention the main challenges while trying to associate a library with a known vulnerability the study \cite{Plate2015} does. Their challenges can be observed implicitly on all studies compiled in this work. To establish this relationship, information from different sources needs to be integrated, such as vulnerabilities database, libraries repository, and source code repository.
+The authors state that multiple problems hinder this integration, requiring ad-hoc and technology-specific solutions. Such problems hindered the detection of known vulnerabilities. As evidence, all studies compile in this work have at least one manual step that in its absence, the work would be infeasible.
 \begin{itemize}
-\item   Performance metrics
-\item   Performance parameters
-\item   Experimental design
-\end{itemize}
-
-
-\textbf{How our solution performed, how its performance compared to
-that of other solutions mentioned in related work, and how these results show
-that our solution is effective}:
-
-\begin{itemize}
-\item   Presentation and Interpretation
-\item   Why, how, and to what degree our solution is better
-\item   Why the reader should be impressed with our solution
-\item   Comments
+%\item
+\item
+{\em Non-uniform reporting of products affected by a vulnerability} - In some cases, only the CPE of the respective library is mentioned, in other cases, products or libraries using the library are also listed.  
+%\item
+\item
+{\em Vulnerability and dependency management make use of different naming schemes and nomenclatures} - CPE does not straight map to packages repositories such as Maven or npm.
+%\item
+\item
+{\em Vulnerabilities and VCS information of the respective patch are not linked in a systematic and machine-readable fashion} - While committing a fix to the repository, developers do not have a standard way to refer to the CPE.
 
 \end{itemize}
-
-
-\textbf{Context and limitations of our solution as required for
-summation:} State what the results {\em do} and {\em do not} say.
-
-
+%\item
+Improved know vulnerabilities databases and standard ways to identify the OSS libraries in the repositories and commits would increase significantly the automation level and the impact of the available solutions.
 
 \section{Conclusion}
 \label{sec:Conclusion}
 
-\textbf{The problem we have solved}: The most succinct statement of the problem in the paper. Ideally one
-sentence. More realistically two or three. Remember that you simply state it
-without argument. If you have written a good paper you are simply reminding the
-reader of what they now believe and of how much they agree with you.
-
-
-
-\textbf{Our solution to the problem}: again, a succinct statement of the presented solution
-Sometimes it works well to leave it at that and not even describe your
-solution here. If you do, then again state your solution in one or two
-sentences taking the rhetorical stance that this is all obvious. If you have a
-good solution and have written an effective paper, then the reader already
-agrees with you.
-
-\textbf{Why our solution is worthwhile in some significant way}:
-Again, a succinct restatement in just a few sentences of why your solution is
-worthwhile assuming the reader already agrees with you
-
-\textbf{Why the reader should be impressed and/or pleased to have read the paper}:
-A few sentences about why your solution is valuable, and thus why the
-reader should be glad to have read the paper and why they should be glad you
-did this work.
-
-
-
-\textbf{What we will (or could) do next}
-
-\begin{itemize}
-\item   Improve our solution
-\item   Apply our solution to harder or more realistic versions of this problem
-\item   Apply our solution or a related solution to a related problem
-
-\end{itemize}
+There are several works that tackle different aspects of the known vulnerability identification problem. Some of them directly identify the vulnerability, such as the code-based method, while others offer an indication of possible vulnerabilities such as the dependency freshness metrics. There is no solution that will fit all cases yet. Even in production ready solutions, there is a dependency on specific technologies and manually built databases. 
+This paper covered a set of different solutions that can help software development practitioners to streamline their dependency management process.
 
 
 \bibliographystyle{IEEETrans}

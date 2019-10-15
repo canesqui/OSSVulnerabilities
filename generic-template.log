@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6730 64-bit) (preloaded format=pdflatex 2019.10.11)  11 OCT 2019 11:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6730 64-bit) (preloaded format=pdflatex 2019.10.8)  15 OCT 2019 11:27
 entering extended mode
 **./generic-template.tex
 (generic-template.tex
 LaTeX2e <2018-04-01> patch level 5
 
-(C:\Users\ronaldocanesqui\AppData\Roaming\MiKTeX\2.9\tex\latex\ieeetran\IEEEtra
-n.cls
+(C:\Users\ronaldocanesqui.CS\AppData\Roaming\MiKTeX\2.9\tex\latex\ieeetran\IEEE
+tran.cls
 Document Class: IEEEtran 2015/08/26 V1.8b by Michael Shell
 -- See the "IEEEtran_HOWTO" manual for usage information.
 -- http://www.michaelshell.org/tex/ieeetran/
@@ -258,7 +258,7 @@ Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4762.
 \c@Hy@tempcnt=\count110
 
-(C:\Users\ronaldocanesqui\AppData\Roaming\MiKTeX\2.9\tex\latex\url\url.sty
+(C:\Users\ronaldocanesqui.CS\AppData\Roaming\MiKTeX\2.9\tex\latex\url\url.sty
 \Urlmuskip=\muskip11
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
@@ -281,7 +281,6 @@ LaTeX Info: Redefining \pageref on input line 6443.
 \c@Hfootnote=\count114
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
-
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def"
 File: hpdftex.def 2018/02/06 v6.86b Hyperref driver for pdfTeX
 \Fld@listcount=\count115
@@ -294,8 +293,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip47
 )
-(C:\Users\ronaldocanesqui\AppData\Roaming\MiKTeX\2.9\tex\latex\psfrag\psfrag.st
-y
+(C:\Users\ronaldocanesqui.CS\AppData\Roaming\MiKTeX\2.9\tex\latex\psfrag\psfrag
+.sty
 Package: psfrag 1998/04/11 v3.04 PSfrag (MCG)
  ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
 Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
@@ -320,8 +319,8 @@ Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
 \Gin@req@height=\dimen139
 \Gin@req@width=\dimen140
 )
-(C:\Users\ronaldocanesqui\AppData\Roaming\MiKTeX\2.9\tex\latex\wrapfig\wrapfig.
-sty
+(C:\Users\ronaldocanesqui.CS\AppData\Roaming\MiKTeX\2.9\tex\latex\wrapfig\wrapf
+ig.sty
 \wrapoverhang=\dimen141
 \WF@size=\dimen142
 \c@WF@wrappedlines=\count119
@@ -380,8 +379,8 @@ LaTeX Info: Redefining \nameref on input line 20.
 \openout4 = `generic-template.out'.
 
 
-(C:\Users\ronaldocanesqui\AppData\Roaming\MiKTeX\2.9\tex\context\base\mkii\supp
--pdf.mkii
+(C:\Users\ronaldocanesqui.CS\AppData\Roaming\MiKTeX\2.9\tex\context\base\mkii\s
+upp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count121
 \scratchdimen=\dimen143
@@ -409,11 +408,10 @@ G,.JBIG2,.JB2,.eps]
 ) [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
-{C:/Users/ronaldocanesqui/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
+{C:/Users/ronaldocanesqui.CS/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
-]
-(generic-template.bbl)
+] (generic-template.bbl)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 260.
  [2
 
@@ -428,7 +426,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 260.
  ) 
 Here is how much of TeX's memory you used:
  6598 strings out of 492973
- 100616 string characters out of 3135901
+ 100661 string characters out of 3135893
  200089 words of memory out of 3000000
  10406 multiletter control sequences out of 15000+200000
  39044 words of font info for 75 fonts, out of 3000000 for 9000
