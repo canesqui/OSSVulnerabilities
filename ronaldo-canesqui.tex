@@ -79,8 +79,8 @@ The rest of this paper will cover studies on the vulnerability lifespan \ref{sec
 
 %\begin{itemize}
 %\item
-To analyze the vulnerability lifespan the study \cite{Decan2018} used a 700 security vulnerabilities report made available by Snyk.io \footnote{https://snyk.io} and retrieved the list of corresponding releases from the open-source discovery service libraries.io \cite{Nesbitt2017}. Based on the list of releases, they identified which ones were affected by the vulnerability.
-Based on the relationship between package, vulnerability, first release data, vulnerability discovery date, it was possible to trace a vulnerability timeframe.
+To analyze the vulnerability lifespan the study \cite{Decan2018} used a 700 security vulnerabilities report made available by Snyk.io \footnote{https://snyk.io} and retrieved the list of corresponding releases from the open-source discovery service libraries.io \cite{Nesbitt2017}. Based on the list of releases, the researchers identified which ones were affected by the vulnerability.
+Based on the relationship between package, vulnerability, first release data, and vulnerability discovery date, it was possible to trace a vulnerability timeframe.
 
 \textbf{How long does the package remain vulnerable}
 %\item
@@ -246,7 +246,7 @@ The authors test their approach analyzing 98 libraries and 1,246,118 apps from G
 The Vulnerability Alert Service (VAS) is proposed by \cite{Cadariu2015}. Their focus is to increase the awareness about known vulnerabilities by making it part of the software quality process. The overall process is illustrated in figure ~\ref{VASProcess}. First, the target project has its dependencies extracted and recognized. Then, list of dependencies is analyzed by the matching task, which tries to match the dependency with an entry from the vulnerability disclosures, in this study a CVE entry. Upon a successful match, an alert is produced which is consumed by a human operator. The authors extended the OWASP Dependency Check Tool to extract the dependencies list from Maven {\em pom.xml} files and used this tool as the vulnerability checker described in the diagram.
 %\item
 The conclusion of this work shows a false positive rate of over 70\%, but the authors state that the rate is smaller when the solution was actually deployed. 
-The researchers affirm that the high false-positive can be caused by situations like the MySQL-connector jar which is flagged with the vulnerabilities of the MySQL database server. The evaluation with the human operators shown that despite the false positive rate, an alert system was considered useful. Even the authors were satisfied with the operators' evaluation, since their solution looks for dependencies in {\em pom.xml} files, only direct dependencies can be identified.
+The researchers affirm that the high false-positive can be caused by situations like the MySQL-connector jar which is flagged with the vulnerabilities of the MySQL database server. The evaluation with the human operators shown that despite the false positive rate, an alert system was considered useful. Even the authors were satisfied with the operators' evaluation only direct dependencies can be identified by their method.
 
 \begin{figure}[h]
 	\centering
@@ -268,7 +268,7 @@ The authors used static and dynamic analysis to determine if the vulnerable code
 Their solution will notify the user if the vulnerability has impact on the application, meaning, the vulnerable code can be reached and also notify about the presence of halted libraries.
 
 %\item
-Other studies from the same authors use the same method to identify known vulnerabilities but focus on different aspects of the solution. \cite{Plate2015} introduces a simpler but very similar method to the one previously described. It was presented as a proof-of-concept and targets performance comparison between their approach, OWASP Dependency Check and two commercial tools.  \cite{pashchenko2018esem} focuses on how the impact of know vulnerabilities is inflated because other studies are counting vulnerable dependencies that are not deployed, such as libraries that are only used during tests. 
+Other studies from the same authors use the same method to identify known vulnerabilities but focus on different aspects of the solution. \cite{Plate2015} introduces a simpler but very similar method to the one previously described. It was presented as a proof-of-concept and targets performance comparison between their approach, OWASP Dependency Check and two commercial tools.  \cite{pashchenko2018esem} focuses on how the impact of know vulnerabilities is inflated since other studies are counting vulnerable dependencies that are not deployed, such as libraries that are only used during tests. 
 %\end{itemize}
 
 %\item
@@ -302,9 +302,7 @@ Improved know vulnerabilities databases and standard ways to identify the OSS li
 \section{Conclusion}
 \label{sec:Conclusion}
 
-There are several works that tackle different aspects of the known vulnerability problem. Some of them directly identify the vulnerability, such as the code-based method, while others offer an indication of possible vulnerabilities such as the dependency freshness metrics. There is no one solution that will ﬁt all cases yet. Even in production-ready solutions, there is a dependency on technology-specific details, ad-hoc adjustments, and manually built databases. This paper covered a set of different solutions that can help software development practitioners to streamline their dependency management process.
-
-
+There are several works that tackle different aspects of the known vulnerability problem. Some of them directly identify the vulnerability, such as the code-based method, while others offer an indication of possible vulnerabilities such as the dependency freshness metrics. There is no one solution that will fit the majority of cases. Even in production-ready solutions, there is a dependency on technology-specific details, ad-hoc adjustments, and manually built databases. This paper covered a set of different solutions that can help software development practitioners to streamline their dependency management process.  
 
 \bibliographystyle{IEEETrans}
 \bibliography{./rc}
