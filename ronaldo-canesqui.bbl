@@ -122,10 +122,22 @@ A.~Nesbitt and B.~Nickolls, ``{Libraries.io Open Source Repository and
   \url{https://doi.org/10.5281/zenodo.808273}
 \BIBentrySTDinterwordspacing
 
+\bibitem{pashchenko2018esem}
+I.~Pashchenko, H.~Plate, S.~E. Ponta, A.~Sabetta, and F.~Massacci, ``Vulnerable
+  open source dependencies: Counting those that matter,'' in \emph{Proceedings
+  of the 12th International Symposium on Empirical Software Engineering and
+  Measurement (ESEM)}, Oct 2018.
+
 \bibitem{Perl2015}
 H.~Perl, S.~Dechand, M.~Smith, D.~Arp, F.~Yamaguchi, K.~Rieck, S.~Fahl, and
   Y.~Acar, ``Vccfinder: Finding potential vulnerabilities in open-source
   projects to assist code audits,'' 10 2015, pp. 426--437.
+
+\bibitem{Plate2015}
+H.~{Plate}, S.~E. {Ponta}, and A.~{Sabetta}, ``Impact assessment for
+  vulnerabilities in open-source software libraries,'' in \emph{2015 IEEE
+  International Conference on Software Maintenance and Evolution (ICSME)}, Sep.
+  2015, pp. 411--420.
 
 \bibitem{Ponta2018}
 S.~E. {Ponta}, H.~{Plate}, and A.~{Sabetta}, ``Beyond metadata: Code-centric

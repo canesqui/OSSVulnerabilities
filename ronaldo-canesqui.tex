@@ -23,6 +23,7 @@ ronaldocanesqui@southern.edu
 
 \begin{abstract}
 
+The use of open-source software is a reality. The exponential growth of available packages and their dependencies, 
 The abstract should describe the basic message of the paper, including: the
 problem, why your solution should be of interest, some notion that your
 solution is effective, and a teaser about how it has been evaluated. Cover all
@@ -45,8 +46,8 @@ step of writing the paper.
 
 %\begin{itemize}
 %\item
-The use of open-source libraries is a factual reality in the software industry. In 2018, Synopsys\footnote{https://www.blackducksoftware.com/} found open-source code in more than 96\% of their audits\cite{Synopsys2019}. OSS \footnote{Open-Source Software} usage has increased exponentially during the last decade. The most popular source for libraries in the Java ecosystem, Maven Central Repository, growth 542.17\% from 2010 to 2016 \cite{Kula2018}. Another popular open-source repository for the Javascript ecosystem, npm growth from 0 packages at its creation in 2010 to 1,000,000 packages in 2019. \footnote{https://snyk.io/blog/npm-passes-the-1-millionth-package-milestone-what-can-we-learn/ accessed 10/10/2019}  
-The figure~\ref{PackageEvolution}\cite{Decan} shows the number of packages evolution on other popular ecosystems.
+The use of open-source libraries is a reality in the software industry. In 2018, Synopsys\footnote{https://www.blackducksoftware.com/} found open-source code in more than 96\% of their audits\cite{Synopsys2019}. Open-source software (OSS) usage has increased exponentially during the last decade. The most popular source for libraries in the Java ecosystem, Maven Central Repository, growth 542.17\% from 2010 to 2016 \cite{Kula2018}. Another popular open-source repository for the Javascript ecosystem, npm growth from 0 packages at its creation in 2010 to 1,000,000 packages in 2019. \footnote{https://snyk.io/blog/npm-passes-the-1-millionth-package-milestone-what-can-we-learn/ accessed 10/10/2019}  
+The figure~\ref{PackageEvolution} extracted from \cite{Decan} shows the number of packages evolution on other popular ecosystems.
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.70]{PackagesEvolution.png}
@@ -224,7 +225,7 @@ Various researchers have worked to solve the problem of know vulnerabilities in 
 \textbf{Predicting vulnerabilities:}
 %\begin{itemize}
 %\item
-Even thought the focus of this work is on papers that detect vulnerabilities using know vulnerabilities database, it is worth mentioning that there is a branch of proposed solutions that operates identifying vulnerabilities based on a set of characteristics. Part of this solutions uses machine learning to identify vulnerabilities. One of this works \cite{Perl2015} mapped the CVE entries to the commit that generated the vulnerability and trained a SVM-based model using the commit's metadata. According to the authors this method reduced the amount of false positives by 99\% when compared to Flawfinder\footnote{https://https://dwheeler.com/flawfinder/}. It was capable of detecting 53 of the 219 known vulnerabilities used in the study and only producing 36 false positives. The proposed solution analyses each commit and tries to predict the presence of vulnerabilities.
+Even thought the focus of this work is on papers that detect vulnerabilities using know vulnerabilities databases, it is worth mentioning that there is a branch of proposed solutions that operates identifying vulnerabilities based on a set of characteristics. Part of this solutions uses machine learning to identify vulnerabilities. One of this works \cite{Perl2015} mapped the CVE\footnote{Common Vulnerabilites and Exposures - https://cve.mitre.org/} entries to the commit that generated the vulnerability and trained a SVM-based model using the commit's metadata. According to the authors this method reduced the amount of false positives by 99\% when compared to Flawfinder\footnote{https://https://dwheeler.com/flawfinder/}. It was capable of detecting 53 of the 219 known vulnerabilities used in the study and only producing 36 false positives. The proposed solution analyses each commit and tries to predict the presence of vulnerabilities.
 %\end{itemize}
 
 \textbf{Measuring dependency freshness}
@@ -264,7 +265,7 @@ The authors test their approach analyzing 98 libraries and 1,246,118 apps from G
 \textbf{Vulnerability Alert Service (VAS)}
 %\begin{itemize}
 %\item
-The Vulnerability Alert Service (VAS) is proposed by \cite{Cadariu2015}. Their focus is to increase the awareness about known vulnerabilities by making it part of the software quality process. The overall process is illustrated by figure ~\ref{VASProcess}. The target project has its dependencies extracted and recognized. The list of dependencies is then analyzed by the matching task, which tries to match the dependency with a entry from the vulnerability disclosures, in this study a CVE entry. Upon a successful match, an alert is produced which is consumed by a human operator. The authors extended the OWASP Dependency Check Tool to extract the dependency list from Maven pom.xml files and used this tool as the vulnerability checker described in the diagram.
+The Vulnerability Alert Service (VAS) is proposed by \cite{Cadariu2015}. Their focus is to increase the awareness about known vulnerabilities by making it part of the software quality process. The overall process is illustrated by figure ~\ref{VASProcess}. The target project has its dependencies extracted and recognized. The list of dependencies is then analyzed by the matching task, which tries to match the dependency with a entry from the vulnerability disclosures, in this study a CVE entry. Upon a successful match, an alert is produced which is consumed by a human operator. The authors extended the OWASP Dependency Check Tool to extract the dependencies list from Maven pom.xml files and used this tool as the vulnerability checker described in the diagram.
 %\item
 The conclusion of this work shows a false positive rate of over 70\%, but the authors state that the rate is smaller when the solution was actually deployed. 
 The researchers affirm that the high false-positive can be caused by situations like the MySQL-connector jar which is flagged with the vulnerabilities of the MySQL database server. The evaluation with the human operators shown that despite the false positive rate, an alert system was considered useful. Even the authors were satisfied with the operators' evaluation, since their solution looks for dependencies in pom.xml files, only direct dependencies can be identified.
@@ -283,13 +284,16 @@ The researchers affirm that the high false-positive can be caused by situations 
 %\item
 The study \cite{Ponta2018} uses a method to identify vulnerabilities that, according to the authors, is more accurate then the methods proposed so far. Their work aims to answer the questions: does my application is vulnerable if it uses a vulnerable dependency? The researchers claim that this is not always the case and other studies failed to answer this question. The authors state that the software that contains a certain library that has known vulnerability does not need to be subject to costly efforts if proven that the vulnerability does not present harm. This way, the fix can be applied in the subsequent releases under no additional cost. Conceptually their solution can be used on any ecosystem, but their implementation is based on the Java ecosystem and the Maven Central Repository. They used the project’s pom.xml file to determine the dependencies. After the dependencies are determined, they remove all dependencies classified as provided and test, since those will not be deployed. Then the halted libraries are identified. 
 One key aspect for this approach to work is a database vulnerability that contains the meta-data about library, such as name and version according to Maven Central Repository, the vulnerable source code and the source code for the fix. Using this database is possible to associate the dependency identified previously and the vulnerability, along with the source-code. This database was manually produced by the authors it covers 90\% of Java ecosystem vulnerabilities.
-The authors used static analysis to determine if the vulnerable code is reachable and dynamically analysis. The dynamically analysis is done by instrumenting the vulnerable code and running automated and manual tests.
+The authors used static and dynamic analysis to determine if the vulnerable code is reachable. The dynamically analysis is done by instrumenting the vulnerable code and running automated and manual tests.
 Their solution will notify the user if the vulnerability has impact on the application, meaning, the vulnerable code can be reached.
+
+%\item
+Other studies from the same authors use the same method to identify know vulnerabilities but focus on different aspects of the solution. \cite{Plate2015} introduces a simpler but very similar method to the one previously described. It was presented as a proof-of-concept and targets performance comparison between their approach, OWASP Dependency Check and two commercial tools.  \cite{pashchenko2018esem} focus on how the impact of know vulnerabilities is inflated because other studies are counting vulnerable dependencies that are not deployed, such as libraries related to tests. 
 %\end{itemize}
 
 %\item
 Then, describe the structure of the rest of this section, and what each
-subsection describes.
+subsection describes. \cite{Plate2015}
 %\end{itemize}
 
 \textbf{How our solution (will $|$ does) work}
